@@ -8,23 +8,26 @@
 When your cluster is provisioned, an AWS elastic load balancer (ELB) is created
 to route application traffic into the cluster. The domain for your ELB is
 configured to route application traffic via
-`http(s)://*.<shard-id>.<cluster-id>.openshiftapps.com`. The `<shard-id>` is a
-four-character string that is communicated to you after initial provisioning.
+`http(s)://*.apps.<cluster-id>.<unique-id>.<instance-id>.openshiftapps.com`. The `<unique-id>` 
+is a random four-character string, and `<instance-id>` is a two-character string indentifying
+the backing service that provisioned the cluster.
 
 If you want to use custom domain names for your application routes, you should
 set up a CNAME record in your DNS host to point to
-*_elb.apps.<cluster-id>.<shard-id>.openshiftapps.com_*. While `elb` is recommended as a
-reminder for where this record is pointing, you can use any string for this
-value. You can create these CNAME records for each custom route you have, or you
-can create a wildcard CNAME record. For example:
+*_elb.apps.<cluster-id>.<unique-id>.<instance-id>.openshiftapps.com_*. While `elb` 
+is recommended as a reminder for where this record is pointing, you can use any 
+string for this value. You can create these CNAME records for each custom route 
+you have, or you can create a wildcard CNAME record. For example:
 
 ----
-*.openshift.example.com    CNAME    elb.1234.my-example.openshiftapps.com
+*.openshift.example.com.    CNAME    elb.apps.my-cluster.a1b2.p1.openshiftapps.com.
 ----
 
 This allows you to create routes like *_app1.openshift.example.com_* and
 *_app2.openshift.example.com_* without having to update your DNS every time.
 
+ifdef::openshift-enterprise,openshift-origin[]
+// hidden until there's support in v4 for private clusters and multiple routers
 Customers with configured VPC peering or VPN connections have the option of
 requesting a second ELB, so that application routes can be configured as
 internal-only or externally available. The domain for this ELB will be identical
@@ -45,3 +48,5 @@ Alternatively, you can use a custom domain:
 ----
 $ oc expose service <service-name> -l route=external --name=<custom-route-name> --hostname=<custom-domain>
 ----
+
+endif::[]

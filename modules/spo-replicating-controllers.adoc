@@ -40,6 +40,13 @@ roleRef:
   apiGroup: rbac.authorization.k8s.io
 ----
 
+. Create the project:
++
+[source,terminal]
+----
+$ oc new-project nginx-secure
+----
+
 . Create the `Role` object:
 +
 [source,yaml]

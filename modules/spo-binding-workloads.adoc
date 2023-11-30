@@ -51,7 +51,7 @@ $ oc label ns my-namespace spo.x-k8s.io/enable-binding=true
 +
 [source,terminal,subs="attributes+"]
 ----
-$ oc delete pods test-pod && oc create -f pod01.yaml
+$ oc delete pods test-pod && oc create -f test-pod
 ----
 
 .Verification

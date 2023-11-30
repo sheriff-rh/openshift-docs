@@ -56,6 +56,13 @@ spec:
       app: my-app
 ----
 
+. Create the project:
++
+[source,terminal]
+----
+$ oc new-project my-namespace
+----
+
 . Create a workload to record:
 +
 [source,yaml]

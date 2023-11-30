@@ -26,7 +26,7 @@ ifdef::seccomp[]
 
 .Procedure
 
-* Create the `{kind}` object:
+. Create the `{kind}` object:
 +
 [source,yaml,subs="attributes+"]
 ----
@@ -37,6 +37,13 @@ metadata:
   name: profile1
 spec:
   defaultAction: SCMP_ACT_LOG
+----
+
+. Create the project:
++
+[source,terminal]
+----
+$ oc new-project my-namespace
 ----
 
 The {type} profile will be saved in `/var/lib/kubelet/{type}/operator/<namespace>/<name>.json`.
@@ -77,6 +84,13 @@ spec:
   inherit:
   - kind: System
     name: container
+----
+
+. Create the project:
++
+[source,terminal]
+----
+$ oc new-project nginx-deploy
 ----
 
 . Wait for `selinuxd` to install the policy by running the following command:

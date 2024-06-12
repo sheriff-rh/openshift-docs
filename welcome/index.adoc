@@ -28,6 +28,8 @@ ifndef::openshift-rosa[]
 ifndef::openshift-rosa,openshift-dedicated,openshift-dpu,openshift-telco[]
 To navigate the {product-title} {product-version} documentation, you can use one of the following methods:
 
+== TEST TEST
+
 * Use the left navigation bar to browse the documentation.
 * Select the task that interests you from the contents of this Welcome page.
 endif::openshift-rosa,openshift-dedicated,openshift-dpu,openshift-telco[]
